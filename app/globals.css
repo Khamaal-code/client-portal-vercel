@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+:root {
+  --bg-base: #f5f2ee;
+  --bg-accent: #e7eef3;
+  --text-primary: #171717;
+  --text-muted: #4b5563;
+  --card-bg: #ffffff;
+  --border-subtle: #e5e7eb;
+  --accent: #0f766e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  color: var(--text-primary);
+  background: radial-gradient(circle at top left, var(--bg-accent), var(--bg-base));
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fraunces", "Georgia", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

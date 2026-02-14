@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String      @id @default(cuid())
+  email           String      @unique
+  passwordHash    String
+  emailVerifiedAt DateTime?
+  createdAt       DateTime    @default(now())
+  otps            EmailOtp[]
+}
+
+model EmailOtp {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  codeHash  String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+}
+
+model QuickBooksToken {
+  id           String   @id @default(cuid())
+  realmId      String
+  accessToken  String
+  refreshToken String
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Invoice {
+  id            String   @id @default(cuid())
+  qbInvoiceId   String   @unique
+  docNumber     String?
+  customerEmail String?
+  total         Decimal?
+  balance       Decimal?
+  txnDate       DateTime?
+  dueDate       DateTime?
+  status        String?
+  paid          Boolean  @default(false)
+  updatedAt     DateTime @updatedAt
+}
